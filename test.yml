@@ -1,0 +1,11 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+- name: 'Root'
+  path: '/'
+  shouldExist: true
+  permissions: 'drwxr-xr-x'
+  uid: 0000
+  gid: 0000
+  isExecutableBy: 'group'
+
