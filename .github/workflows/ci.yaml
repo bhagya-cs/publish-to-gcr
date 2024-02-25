@@ -22,5 +22,5 @@ jobs:
         - name: Login to gHCR
           run: |
            echo $PAT | docker login ghcr.io -u $USER --password-stdin
-           docker tag $TAG ${{ env.REGISTRY }}/$User/$TAG:${{ env. VERSION }}
-           docker push ${{ env.REGISTRY }}/$USER/$tag:${{ env.VERSION }}
+           docker tag $TAG ghcr.io/$USER/$TAG:$VERSION
+           docker push ghcr.io/$USER/$TAG:$VERSION
