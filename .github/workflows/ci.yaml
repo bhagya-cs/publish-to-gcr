@@ -1,26 +1,16 @@
-name: Build-Docker-Image
+name: Docker Image CI for GHCR
 
-on: [push]
+on:
+    push
 
-jobs: 
-    build_docker_img:
-     runs-on: ubuntu-latest
-     env:
-        TAG: java-api
-        PAT: ${{ secrets.GITHUB_TOKEN }}
-        USER: bhagya-cs
-        REGISTRY: ghcr.io
-        VERSION: v1
-
-     steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-
-        - name: Build Docker Image
-          run: docker build -t $TAG .
-
-        - name: Login to gHCR
-          run: |
-           docker login ghcr.io -u $USER --password ${{ secrets.GH_PAT }}
-           docker tag $TAG ghcr.io/$USER/$TAG:$VERSION
-           docker push ghcr.io/$USER/$TAG:$VERSION
+jobs:
+    build_and_publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+            - name: Build and push the image
+              run: |
+               docker login  --username bhagya-cs --password ${{ secrets.GH_PAT }} ghcr.io
+               docker build . --tag ghcr.io/bhagya-cs/calci-ghcr:latest
+               docker push ghcr.io/bhagya-cs/calci-ghcr:latest
