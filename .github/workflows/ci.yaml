@@ -7,7 +7,7 @@ jobs:
      runs-on: ubuntu-latest
      env:
         TAG: java-api
-        PAT: ${{ secrets.GITHUB_TOKEN}}
+        PAT: ${{ secrets.GITHUB_TOKEN }}
         USER: bhagya-cs
         REGISTRY: ghcr.io
         VERSION: v1
