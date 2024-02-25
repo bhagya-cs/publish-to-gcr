@@ -21,6 +21,6 @@ jobs:
 
         - name: Login to gHCR
           run: |
-           echo $PAT | docker login ghcr.io -u $USER --password-stdin
+           echo "${{ secrets.DOCKERPWD }}" | docker login ghcr.io -u $USER --password-stdin
            docker tag $TAG ghcr.io/$USER/$TAG:$VERSION
            docker push ghcr.io/$USER/$TAG:$VERSION
